@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap %}
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Responsive Personal Portfolio vCard Template">
+	<meta name="author" content="Ahmed Faruk">
+
+	<title>Moise's Portfolio</title>
+
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+	<!-- Font Awesome CSS -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<!-- Animate css -->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <!-- Magnific css -->
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+	<!-- Custom styles CSS -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link rel="shortcut icon" href="{% static 'images/ico/source/favicon.ico' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+
+</head>
+
+<body>
+    
+	<!-- Preloader -->
+	<div id="tt-preloader">
+		<div id="pre-status">
+			<div class="preload-placeholder"></div>
+		</div>
+    </div>
+  
+  	<!-- Navigation -->
+	<header class="header">
+		<nav class="navbar navbar-custom" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+                    <a class="navbar-brand" style="color:#282828; border-bottom:6px solid #68c3a3; height:28px; padding:1px; margin-top:15px; margin-left:15px; font-size:20px;" 
+                        href="{% url 'core:index' %}"><img src="" alt="">M o ï s e
+                    </a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="custom-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#home">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#skills">Skills</a></li>
+						<li><a href="#works">Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
+					</ul>
+				</div>
+			</div><!-- .container -->
+		</nav>
+	</header><!-- End Navigation -->
+
+
+
+    <!-- other pages content goes here -->
+    {% block body_block %}
+    {% endblock %}
+
+
+
+	<!-- Footer Section -->
+    <footer class="footer-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="copyright text-center">
+                <p>&copy; Moise Kapanda 2017. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer><!-- End Footer Section -->
+  
+  
+      <!-- Scroll-up -->
+      <div class="scroll-up">
+          <a href="#home"><i class="fa fa-angle-up"></i></a>
+      </div>
+  
+      <!-- Javascript files -->
+      <script src="{% static 'js/jquery.js' %}"></script>
+      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+      <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/smoothscroll.js' %}"></script>
+      <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countTo.js' %}"></script>
+    <script src="{% static 'js/jquery.inview.min.js' %}"></script> 
+    <script src="{% static 'js/jquery.easypiechart.js' %}"></script>
+    <script src="{% static 'js/jquery.shuffle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+    <script src="{% static 'js/jquery.fitvids.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+  </body>
+  </html>

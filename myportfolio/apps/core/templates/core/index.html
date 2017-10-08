@@ -1,0 +1,288 @@
+{% extends "core/base.html" %}
+{% load staticfiles %}
+{% load bootstrap %}
+
+{% block body_block %}
+
+<!-- Home Section -->
+<section id="home" style="max-height:700px;" class="tt-fullHeight" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
+    <div class="intro">
+        <div class="intro-sub">I am Moïse</div>
+        <h1>Creative <span>Developer</span></h1>
+        <p> I am a client-focused Junior Software Developer with 1 year of freelancing experience <br> 
+            designing innovative web applications and achieving high client satisfaction. <br>
+            Below are the links to my Linkedin, Github, and Facebook accounts.
+
+  <div class="social-icons">
+    <ul class="list-inline">
+      <li><a href="https://www.linkedin.com/in/mo%C3%AFse-kapanda-mukendi-a96b0413b/" target="blank"><i class="fa fa-linkedin"></i></a></li>
+      <li><a href="https://github.com/moisekap95" target="blank"><i class="fa fa-github"></i></a></li>
+      <li><a href="https://www.facebook.com/etawale" target="blank"><i class="fa fa-facebook"></i></a></li>
+    </ul>
+  </div> <!-- /.social-icons -->
+    </div>
+
+    <div class="mouse-icon">
+        <div class="wheel"></div>
+    </div>
+</section><!-- End Home Section -->
+
+<!-- About Section -->
+<section id="about" class="about-section section-padding">
+  <div class="container">
+    <h2 class="section-title wow fadeInUp">About Me</h2>
+
+    <div class="row">
+
+      <div class="col-md-4 col-md-push-8">
+        <div class="biography">
+          <div class="myphoto">
+            <img src="{% static 'images/me.jpg' %}" alt="">
+          </div>
+          <ul>
+            <li><strong>Name:</strong> Moïse Mukendi Kapanda</li>
+            <li><strong>City:</strong> Lodi, NJ 07644</li>
+            <li><strong>Job Title:</strong> Software Developer</li>
+            <li><strong>Phone:</strong> +1 (908) 342-7103</li>
+            <li><strong>Email:</strong> moisekapanda@gmail.com</li>
+          </ul>
+        </div>
+      </div> <!-- col-md-4 -->
+
+      <div class="col-md-8 col-md-pull-4">
+        <div class="short-info wow fadeInUp">
+          <h3>What I Do ?</h3>
+          <p>
+              I started offering web development services after taking my first web development class in college back in
+              June 2014. Since then, I made websites for small e-commerce businesses, law firms, and car dealerships. 
+              Along the way I gained so much knowledge. I got familiar with technologies like, Django/Python, NodeJS, 
+              MongoDB, Oracle, VueJS, Onsen UI and Wordpress. I enjoy using my skills to help my community, but I also like 
+              gaining knowledge from others. If you need help with anything or if you want to share your knowledge with 
+              me so we could work together, please feel free to contact me. 
+          </p>
+
+          <ul class="list-check">
+            {% if services %}  
+                {% for service in services %}  
+                    <li>{{ service.title }}</li>
+                {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="download-button">
+          <a class="btn btn-info btn-lg" href="#contact"><i class="fa fa-paper-plane"></i>Send a message</a>
+          <a class="btn btn-primary btn-lg" href="{% static 'cv/KapandaMoiseResume.pdf' %}" download>
+              <i class="fa fa-download"></i>download my cv
+          </a>
+        </div>
+      </div>
+
+
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</section><!-- End About Section -->
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section section-padding">
+  <div class="container">
+    <h2 class="section-title wow fadeInUp">Technical Skills</h2>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% for skill in skills %}
+            {% for category in categories %}
+                {% if category.name == 'technical' %} 
+                    {% if skill.category == category %} 
+                    <div class="skill-progress">
+                    <div class="skill-title"><h3>{{ skill.title }}</h3></div> 
+                    <div class="progress">
+                        <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="{{skill.score}}" aria-valuemin="0" aria-valuemax="100" ><span>{{skill.score}}%</span>
+                        </div>
+                    </div><!-- /.progress -->
+                    </div><!-- /.skill-progress -->
+                    {% endif %}
+                {% endif %}
+            {% endfor%}
+        {% endfor %}
+      </div><!-- /.col-md-6 -->
+    </div><!-- /.row -->
+
+    <div class="skill-chart text-center">
+      <h3>Soft skills</h3>
+    </div>
+      
+    <div class="row more-skill text-center"> 
+        {% for skill in skills %}
+            {% for category in categories %}
+                {% if category.name == 'soft' %} 
+                    {% if skill.category == category %} 
+                        <div class="col-xs-12 col-sm-4 col-md-2">
+                            <div class="chart" data-percent="{{skill.score}}" data-color="2ecc71">
+                                <span class="percent"></span>
+                                <div class="chart-text">
+                                <span>{{skill.title}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+  </div><!-- /.container -->
+</section><!-- End Skills Section -->
+
+
+<!-- Works Section -->
+<section id="works" class="works-section section-padding">
+  <div class="container">
+    <h2 class="section-title wow fadeInUp">Works</h2>
+
+    <ul class="list-inline" id="filter">
+        <li><a class="active" data-group="all">All</a></li>
+        {% for category in categories %}
+            {% if category.model == 'W' %}
+                <li><a data-group="{{category.name}}">{{category.name}}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <div class="row">
+      <div id="grid">
+
+        {% for work in works%}
+            {% for category in categories %}
+                {% if work.category == category %}
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-4" data-groups='["all", "{{category.name}}"]'>
+                    <div class="portfolio-bg biography">
+                        <div class="portfolio">
+                          <div class="tt-overlay"></div>
+                          <div class="links">
+                              <a class="image-link" href="../../../../media/{{work.main_photo}}"><i class="fa fa-search-plus"></i></a>
+                              <a href="{{work.link}}" target="blank"><i class="fa fa-link"></i></a>                          
+                          </div><!-- /.links -->
+                          <img src="../../../../media/{{work.main_photo}}" alt="image"> 
+                          <div class="portfolio-info" style="display:block;">
+                              <h3>{{work.title}}</h3>
+                          </div><!-- /.portfolio-info -->
+                        </div><!-- /.portfolio -->
+                        <ul>
+                          <li><strong>Client:</strong> {{work.client}}</li>
+                          <li><strong>Date:</strong> {{work.date}}</li>
+                          <li><strong>App Link:</strong> <a href="{{work.link}}" target="blank">{{work.title}}</a></li>
+                        </ul>
+                    </div><!-- /.portfolio-bg -->
+                    </div><!-- /.portfolio-item -->
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+      </div><!-- /#grid -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- End Works Section -->
+
+
+<!-- Facts Section -->
+<section id="facts" class="facts-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
+  <div class="tt-overlay-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="count-wrap">
+            <div class="col-sm-3 col-xs-6">
+              <i class="fa fa-flask"></i>
+              <h3 class="timer">2</h3>
+              <p>Years of Experience</p>
+            </div>
+            <div class="col-sm-3 col-xs-6"> 
+              <i class="fa fa-thumbs-up"></i>
+              <h3 class="timer">8</h3>                
+              <p>Projects Done</p>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <i class="fa fa-users"></i>
+              <h3 class="timer">3</h3> 
+              <p>Happy Clients</p>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <i class="fa fa-trophy"></i>
+              <h3 class="timer">1</h3> 
+              <p>Awards Won</p>
+            </div>
+          </div><!-- /count-wrap -->
+        </div><!-- /.col-md-12 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div>
+</section> <!-- End Facts Section -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section section-padding">
+  <div class="container">
+    <h2 class="section-title wow fadeInUp">Contact</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="contact-form">
+          <strong>Send me a message</strong>
+
+          {% if email_sent %}
+            <div class = "alert alert-success alert-dismissable"> 
+                Thank you {{name}} for contacting me. I will get back to you as soon as possible
+            </div>
+          {% endif %}
+
+          <form name="contact-form" method="POST" action="{% url 'core:email' %}">
+            
+            {% csrf_token %}
+            {% if errors %}
+              <div class = "alert alert-danger alert-dismissable">
+                  {% for error in errors %}
+                  <p>{{ error }}</p>
+                  {% endfor %}
+              </div>
+            {% endif %}
+
+            {{ contact_form | bootstrap }}
+
+            <button type="submit" name="submit" class="btn btn-primary">Send Message</button>
+
+          </form>
+        </div>
+      </div><!-- /.col-md-6 -->
+
+      <div class="col-md-6">
+        <div class="row center-xs">
+          <div class="col-sm-6">
+            <i class="fa fa-map-marker"></i>
+            <address>
+              <strong>Location</strong>
+              Lodi, NJ 07644<br>
+            </address>
+          </div>
+
+          <div class="col-sm-6">
+            <i class="fa fa-mobile"></i>
+            <div class="contact-number">
+              <strong>Phone Number</strong>
+              +1 (908) 342-7103 <br>
+            </div>
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="location-map">
+            <div id="mapCanvas" class="map-canvas"></div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- End Contact Section -->
+
+{% endblock %}
