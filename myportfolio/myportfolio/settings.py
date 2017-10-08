@@ -13,16 +13,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 from decouple import config, Csv
 
-def get_env_variable(var_name):
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the {} env variable".format(var_name)
-        if DEBUG:
-            warning.warn(error_msg)
-        else:
-            raise ImproperlyConfigured(error_msg)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
